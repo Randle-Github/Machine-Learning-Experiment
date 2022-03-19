@@ -1,0 +1,14 @@
+DATASET:
+  NAME: watermelon # watermelon iris
+  NORMALISE: True
+
+VISUALISE: True
+MODEL:
+  n: 3
+  metric: Minkowski
+  p: 3
+  SELF_MODEL: True
+  PCA: True
+
+OUTPUT_DIR: output
+ENV_PATH: D:\Work\Paper\machine learning\experiment2
