@@ -1,14 +1,22 @@
 DATASET:
-  NAME: watermelon # watermelon iris
-  NORMALISE: True
+  NAME: watermelon # watermelon iris face 三个数据集
+  VISUALISE: False # 是否进行均一化
 
-VISUALISE: True
+VISUALISE: False # 是否可视化
 MODEL:
-  n: 3
-  metric: Minkowski
-  p: 3
-  SELF_MODEL: True
-  PCA: True
+  n_neighbors: 3 # KNN的近邻数
+  metric: Minkowski # KNN使用的距离度量
+  p: 3 # 对于Minkowski的距离度量参数
+  SELF_MODEL: True # 是否使用自定义KNN（或者使用sklearn）
+  PCA: True # 是否PCA降维至二维，便于可视化
+  NET: resnet34 # metric使用的backbone模型:resnet18,34,50,101
+  MAPPING_DIM: 256 # 将人脸映射出的维度
 
-OUTPUT_DIR: output
-ENV_PATH: D:\Work\Paper\machine learning\experiment2
+STEP:
+  epoches: [10, 10, 10] # 迭代轮数
+  learning_rt: [0.1, 0.01, 0.001] # 迭代学习率
+  method: SGD # 学习形式
+  preserved: net_param # 数据存储位置
+
+OUTPUT_DIR: output # 输出文件
+ENV_PATH: D:\Work\Paper\machine learning\experiment2 # 环境路径

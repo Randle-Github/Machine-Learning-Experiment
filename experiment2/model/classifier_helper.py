@@ -5,8 +5,8 @@ import numpy as np
 class sklearn_classifier():
     def __init__(self, cfg=None):
         self.n_neighbors = cfg["MODEL"]["n_neighbors"]
-        self.metric = cfg["MODEL"]["n_neigbors"]
-        self.p = cfg["MODEL"]["n_neightbors"]
+        self.metric = cfg["MODEL"]["n_neighbors"]
+        self.p = cfg["MODEL"]["n_neighbors"]
         self.kmeans = KNeighborsClassifier(
             n_neighbors=self.n_neighbors, metric=self.metric, p=self.p)
 
@@ -20,8 +20,8 @@ class sklearn_classifier():
 class my_classifier():
     def __init__(self, cfg=None):
         self.n_neighbors = cfg["MODEL"]["n_neighbors"]
-        self.metric = cfg["MODEL"]["n_neigbors"]
-        self.p = cfg["MODEL"]["n_neightbors"]
+        self.metric = cfg["MODEL"]["n_neighbors"]
+        self.p = cfg["MODEL"]["n_neighbors"]
         self.X = None
         self.y = None
 

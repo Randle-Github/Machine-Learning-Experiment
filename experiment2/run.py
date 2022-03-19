@@ -1,6 +1,6 @@
 import yaml
-import datasets
-import model
+from datasets import watermelon, iris
+import model.classifier_helper
 import matplotlib.pyplot as plt
 
 
@@ -9,10 +9,9 @@ def load_cfg():
         cfg = yaml.load(f, Loader=yaml.FullLoader)
     return cfg
 
-
 def work(cfg=None):
     if cfg["DATASET"]["NAME"] == "watermelon":
-        data = datasets.watermelon.WaterMelon()
+        data = watermelon.WaterMelon()
         all_data = data.all()
         train_data = data.train()
         test_data = data.test()
@@ -64,7 +63,7 @@ def work(cfg=None):
         plt.show()
 
     elif cfg["DATASET"]["NAME"] == "iris":
-        data = datasets.iris.Iris(cfg)
+        data = iris.Iris(cfg)
         train_data = data.train()
         test_data = data.test()
         ans = []
@@ -85,4 +84,6 @@ def work(cfg=None):
 
 
 if __name__ == "__main__":
-    load_cfg()
+    cfg = load_cfg()
+    # print(cfg)
+    work(cfg)
