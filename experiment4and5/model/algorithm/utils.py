@@ -2,7 +2,7 @@ import numpy as np
 
 
 def draw(model, X, Y, ax, t, support_vectors=None):
-    ax.scatter(X.iloc[:, 0], X.iloc[:, 1], c=Y, s=50, cmap = "spring")
+    ax.scatter(X[:, 0], X[:, 1], c=Y, s=50, cmap = "spring")
     x_lim = ax.get_xlim()
     y_lim = ax.get_ylim()
 
