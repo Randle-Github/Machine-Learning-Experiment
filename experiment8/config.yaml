@@ -1,0 +1,9 @@
+DatasetName: CIFAR10 # MNIST CIFAR10
+ModelName: ViT # ViT CNN FC
+LoadModel: None
+SaveModel: None
+
+batch_size: 64
+learning_rate: 1e-3
+epoches: 20
+visual: False
