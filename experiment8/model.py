@@ -33,6 +33,7 @@ class FC(nn.Module):
             nn.ReLU(),
             nn.BatchNorm1d(num_features=32, eps=1e-05, momentum=0.1, affine=True),
             nn.Linear(32, 10),
+            nn.Softmax(-1),
         )
 
     def forward(self, x):
@@ -63,6 +64,7 @@ class CNN(nn.Module):
             nn.ReLU(),
             nn.BatchNorm1d(num_features=32, eps=1e-05, momentum=0.1, affine=True),
             nn.Linear(32, 10, bias = True),
+            nn.Softmax(dim=-1),
         )
 
     def forward(self, x):
@@ -81,20 +83,20 @@ class ViT(nn.Module):
         self.to_Q1 = [nn.Linear(32, 16, bias=False) for _ in range(49)]
         self.to_K1 = [nn.Linear(32, 16, bias=False) for _ in range(49)]
         self.to_V1 = [nn.Linear(32, 16, bias=False) for _ in range(49)]
-        self.softmax1 = nn.Softmax()
-        self.norm1 = nn.BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        self.softmax1 = nn.Softmax(dim = -1)
+        # self.norm1 = nn.BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
 
         self.to_Q2 = [nn.Linear(16, 8, bias=False) for _ in range(49)]
         self.to_K2 = [nn.Linear(16, 8, bias=False) for _ in range(49)]
         self.to_V2 = [nn.Linear(16, 8, bias=False) for _ in range(49)]
-        self.softmax2 = nn.Softmax()
-        self.norm2 = nn.BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        self.softmax2 = nn.Softmax(dim=-1)
+        # self.norm2 = nn.BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
 
         self.FC = nn.Sequential(
             nn.Linear(49 * 8, 16, True),
             nn.ReLU(),
             nn.Linear(16, 10, True),
-            nn.Softmax()
+            nn.Softmax(dim=-1),
         )
 
     def self_attention(self, Q, K, V):

@@ -21,6 +21,7 @@ def main(cfg):
     learning_rate = float(cfg["learning_rate"])
     epoches = cfg["epoches"]
     LoadModel = cfg["LoadModel"]
+    training_mode = cfg["training_mode"]
 
     training_data, test_data = Datasets(DatasetName)
 
@@ -35,7 +36,13 @@ def main(cfg):
 
     # Initialize the loss function
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+    if training_mode == "Adam":
+        optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    elif training_mode == "SGD":
+        optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+    else:
+        raise Exception("------No Such Training Mode------")
 
     loss_his = []
     for t in range(epoches):
